@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CategoriaProducto {
+  id          Int        @id @default(autoincrement())
+  nombre      String
+  slug        String     @unique
+  descripcion String?
+  productos   Producto[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Producto {
+  id          Int               @id @default(autoincrement())
+  nombre      String
+  slug        String            @unique
+  descripcion String?           @db.Text
+  imagen      String?
+  imagenId    String?
+  categoriaId Int
+  categoria   CategoriaProducto @relation(fields: [categoriaId], references: [id])
+  activo      Boolean           @default(true)
+  orden       Int               @default(0)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+model CategoriaBlog {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  slug        String   @unique
+  descripcion String?
+  posts       Post[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Post {
+  id          Int            @id @default(autoincrement())
+  titulo      String
+  slug        String         @unique
+  resumen     String?        @db.VarChar(500)
+  contenido   String         @db.Text
+  imagen      String?
+  imagenId    String?
+  publicado   Boolean        @default(false)
+  categoriaId Int?
+  categoria   CategoriaBlog? @relation(fields: [categoriaId], references: [id])
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
