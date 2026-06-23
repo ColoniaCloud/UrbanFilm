@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { logout } from '@/app/actions/auth'
 
+export const dynamic = 'force-dynamic'
+
 const navItems = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/estadisticas', label: 'Estadísticas' },
