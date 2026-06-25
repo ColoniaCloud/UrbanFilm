@@ -132,7 +132,7 @@ export default function Home() {
             Contactanos hoy
           </h2>
           <p className="text-slate-600 mb-10 max-w-md mx-auto body-text text-sm leading-relaxed">
-            Ya sea que busques más confort para tu auto o crecer como instalador, tenemos lo que necesitás.
+            Sumate como instalador y accedé a precios directos de fábrica.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contacto" className="btn btn-primary">
