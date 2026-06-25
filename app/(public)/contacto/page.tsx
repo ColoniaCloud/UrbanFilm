@@ -67,10 +67,10 @@ export default function ContactoPage() {
           <div>
             <h3 className="font-bold uppercase tracking-widest mb-3 text-sm">Email</h3>
             <a
-              href="mailto:ventas@urbanfil.net"
+              href="mailto:ventas@urbanfilm.net"
               className="text-gray-600 hover:text-black transition-colors"
             >
-              ventas@urbanfil.net
+              ventas@urbanfilm.net
             </a>
           </div>
 

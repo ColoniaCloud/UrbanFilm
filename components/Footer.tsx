@@ -14,7 +14,7 @@ export default function Footer() {
             className="h-auto w-auto mb-4"
           />
           <p className="text-white/60 text-sm leading-relaxed mb-5">
-            Especialistas en láminas de polarizado para vehículos. Protección, privacidad y estilo.
+            Distribución de láminas polarizadas para instaladores profesionales. Origen USA.
           </p>
           <div className="flex flex-col gap-2">
             <Link href="/usuarios" className="btn btn-tertiary text-xs py-2 px-4 justify-start">
@@ -30,7 +30,6 @@ export default function Footer() {
           <h4 className="font-semibold mb-4">Navegación</h4>
           <ul className="space-y-2 text-sm text-white/60">
             <li><Link href="/" className="hover:text-white transition-colors">Inicio</Link></li>
-            <li><Link href="/laminas" className="hover:text-white transition-colors">Láminas</Link></li>
             <li><Link href="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
             <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
           </ul>
@@ -40,8 +39,8 @@ export default function Footer() {
           <h4 className="font-semibold mb-4">Contacto</h4>
           <ul className="space-y-2 text-sm text-white/60">
             <li>
-              <a href="mailto:ventas@urbanfil.net" className="hover:text-white transition-colors">
-                ventas@urbanfil.net
+              <a href="mailto:ventas@urbanfilm.net" className="hover:text-white transition-colors">
+                ventas@urbanfilm.net
               </a>
             </li>
           </ul>
