@@ -56,15 +56,15 @@ export default function Home() {
               <span className="block text-5xl font-black text-white/10 mb-3 heading">01</span>
               <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Fácil de trabajar</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">
-                Film de buena adherencia, con mínima formación de burbujas y margen de reposicionamiento durante la aplicación. Menos tiempo por vehículo, más vehículos por día.
+                Buena adherencia, mínima formación de burbujas y margen de reposicionamiento durante la aplicación. Menos tiempo por vehículo, más vehículos por día.
               </p>
             </div>
 
             <div className="border border-white/10 p-8 rounded-xl hover:border-white/25 transition-colors">
               <span className="block text-5xl font-black text-white/10 mb-3 heading">02</span>
-              <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Margen atractivo</h3>
+              <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Precio directo de fábrica</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">
-                El precio de importación te permite aplicar un margen competitivo. Tu cliente paga lo justo y vos tenés el espacio para crecer.
+                Sin intermediarios. El precio que recibís te permite ser competitivo y ganar más en cada instalación.
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export default function Home() {
               <span className="block text-5xl font-black text-white/10 mb-3 heading">03</span>
               <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Respaldo de marca USA</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">
-                Urban Film es una marca de origen estadounidense que da confianza al cliente final y te diferencia de opciones sin respaldo en el mercado local.
+                Urban Film es una marca de origen estadounidense que te diferencia y da confianza al cliente final.
               </p>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function Home() {
               { pais: 'Chile', ciudad: 'Santiago', svg: '/img/flag-chile.svg' },
               { pais: 'Uruguay', ciudad: 'Montevideo', svg: '/img/flag-uruguay.svg' },
             ].map(({ pais, ciudad, svg }) => (
-              <div key={pais} className="text-center p-6 border border-gray-100 rounded-xl">
+              <div key={pais} className="text-center p-6">
                 <div className="flex justify-center mb-4">
                   <Image
                     src={svg}
