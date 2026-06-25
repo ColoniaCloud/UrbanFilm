@@ -85,6 +85,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA final */}
+      <section
+        className="relative min-h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden"
+        style={{
+          background: 'radial-gradient(125% 125% at 50% 10%, #fff 40%, #475569 100%)',
+        }}
+      >
+        <div className="relative z-10">
+          <p className="text-xs uppercase tracking-widest text-slate-500 mb-4">¿Listo para empezar?</p>
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 heading text-slate-900">
+            Contactanos hoy
+          </h2>
+          <p className="text-slate-600 mb-10 max-w-md mx-auto body-text text-sm leading-relaxed">
+            Sumate como instalador y accedé a precios directos de fábrica.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contacto" className="btn btn-primary">
+              Contactar
+            </Link>
+            <Link href="/nosotros" className="btn btn-secondary">
+              Conocer la marca
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Presencia regional */}
       <section className="bg-white border-y border-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
@@ -115,32 +141,6 @@ export default function Home() {
                 <p className="text-sm text-gray-400 mt-1 body-text">{ciudad}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA final */}
-      <section
-        className="relative min-h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden"
-        style={{
-          background: 'radial-gradient(125% 125% at 50% 10%, #fff 40%, #475569 100%)',
-        }}
-      >
-        <div className="relative z-10">
-          <p className="text-xs uppercase tracking-widest text-slate-500 mb-4">¿Listo para empezar?</p>
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 heading text-slate-900">
-            Contactanos hoy
-          </h2>
-          <p className="text-slate-600 mb-10 max-w-md mx-auto body-text text-sm leading-relaxed">
-            Sumate como instalador y accedé a precios directos de fábrica.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contacto" className="btn btn-primary">
-              Contactar
-            </Link>
-            <Link href="/nosotros" className="btn btn-secondary">
-              Conocer la marca
-            </Link>
           </div>
         </div>
       </section>
