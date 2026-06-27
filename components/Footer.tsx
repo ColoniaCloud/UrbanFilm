@@ -17,9 +17,6 @@ export default function Footer() {
             Distribución de láminas polarizadas para instaladores profesionales. Origen USA.
           </p>
           <div className="flex flex-col gap-2">
-            <Link href="/usuarios" className="btn btn-tertiary text-xs py-2 px-4 justify-start">
-              Para usuarios
-            </Link>
             <Link href="/instaladores" className="btn btn-tertiary text-xs py-2 px-4 justify-start">
               Para instaladores
             </Link>

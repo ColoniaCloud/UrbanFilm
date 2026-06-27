@@ -11,22 +11,6 @@ export default function Home() {
 
       {/* Beneficios para conductores */}
       <section className="py-24">
-        <div className="px-4 max-w-6xl mx-auto text-center mb-8">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-3">
-            Para conductores
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-widest mb-4 heading">
-            Otro nivel de confort
-          </h2>
-          <p className="text-gray-500 max-w-xl mx-auto body-text text-sm leading-relaxed">
-            Cada vez que subís al auto, notás la diferencia. Urban Film transforma el habitáculo en un espacio más agradable para cada viaje.
-          </p>
-        </div>
-        <div className="flex justify-center mb-12 px-4">
-          <Link href="/usuarios" className="btn btn-primary">
-            ¡Quiero Urban en mi auto!
-          </Link>
-        </div>
         <ConductoresSection />
       </section>
 
