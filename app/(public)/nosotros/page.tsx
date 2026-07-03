@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+const title = 'Nosotros'
+const description = 'Conocé la historia y valores de Urban Film.'
+
 export const metadata: Metadata = {
-  title: 'Nosotros',
-  description: 'Conocé la historia y valores de Urban Film.',
+  title,
+  description,
+  alternates: { canonical: '/nosotros' },
+  openGraph: { title, description, url: '/nosotros' },
+  twitter: { title, description },
 }
 
 export default function NosotrosPage() {

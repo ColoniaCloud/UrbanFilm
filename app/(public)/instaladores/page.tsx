@@ -2,8 +2,15 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import InstaladorForm from '@/components/InstaladorForm'
 
+const title = 'Para instaladores'
+const description = 'Sumate a la red de instaladores Urban Film y hacé crecer tu negocio con productos de calidad y soporte técnico.'
+
 export const metadata: Metadata = {
-  title: 'Para instaladores | Urban Film',
+  title,
+  description,
+  alternates: { canonical: '/instaladores' },
+  openGraph: { title, description, url: '/instaladores' },
+  twitter: { title, description },
 }
 
 export default function InstaladorPage() {

@@ -1,8 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import Hero from '@/components/Hero'
 import ConductoresSection from '@/components/ConductoresSection'
 import { GridVignetteBackground } from '@/components/ui/vignette-grid-background'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/' },
+}
 
 export default function Home() {
   return (

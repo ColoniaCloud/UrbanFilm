@@ -2,8 +2,15 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import UsuariosForm from '@/components/UsuariosForm'
 
+const title = 'Para conductores'
+const description = 'Descubrí los beneficios de las láminas Urban Film para tu vehículo: protección, estética y confort.'
+
 export const metadata: Metadata = {
-  title: 'Para conductores | Urban Film',
+  title,
+  description,
+  alternates: { canonical: '/usuarios' },
+  openGraph: { title, description, url: '/usuarios' },
+  twitter: { title, description },
 }
 
 export default function UsuariosPage() {

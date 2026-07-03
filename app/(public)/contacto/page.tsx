@@ -1,9 +1,15 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
+const title = 'Contacto'
+const description = 'Contactá a Urban Film para consultas sobre nuestros productos.'
+
 export const metadata: Metadata = {
-  title: 'Contacto',
-  description: 'Contactá a Urban Film para consultas sobre nuestros productos.',
+  title,
+  description,
+  alternates: { canonical: '/contacto' },
+  openGraph: { title, description, url: '/contacto' },
+  twitter: { title, description },
 }
 
 export default function ContactoPage() {
