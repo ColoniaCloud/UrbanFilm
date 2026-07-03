@@ -27,23 +27,27 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative h-[80vh] -mt-16 overflow-hidden">
-      <video
-        className="absolute inset-0 h-full w-full object-cover"
-        src="/video/hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
+    <section className="relative h-[80vh]">
+      {/* Decorative layer only: bleeds up behind the floating header (h-16 + top-4 = 5rem) */}
+      <div className="absolute inset-x-0 -top-20 bottom-0 overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/video/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
 
-      <div
-        className={
-          'absolute inset-0 bg-black/70 transition-opacity duration-700 ' +
-          (overlayVisible ? 'opacity-100' : 'opacity-0')
-        }
-      />
+        <div
+          className={
+            'absolute inset-0 bg-black/70 transition-opacity duration-700 ' +
+            (overlayVisible ? 'opacity-100' : 'opacity-0')
+          }
+        />
+      </div>
 
+      {/* Content layer: stays within normal document flow, never behind the header */}
       <div className="relative z-10 h-full flex items-center">
         <div className="w-full px-4">
           <div className="mx-auto flex h-full max-w-6xl flex-col-reverse items-center justify-center gap-8 md:flex-row md:justify-between">

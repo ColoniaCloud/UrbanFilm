@@ -14,8 +14,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-4 z-50">
-      <div className="max-w-6xl mx-auto px-4">
+    <header className="sticky top-4 z-50 h-16">
+      <div className="relative max-w-6xl mx-auto px-4">
         <div className="bg-black/85 backdrop-blur-[8px] text-white rounded-2xl shadow-xl shadow-black/20 border border-white/10 flex items-center justify-between h-16 px-[26px]">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -55,7 +55,7 @@ export default function Navbar() {
         </div>
 
         {open && (
-          <nav className="md:hidden bg-black/85 backdrop-blur-[8px] border border-white/10 rounded-b-2xl mt-2 px-4 pb-4 flex flex-col gap-4 text-sm font-medium">
+          <nav className="md:hidden absolute left-4 right-4 top-full mt-2 bg-black/85 backdrop-blur-[8px] border border-white/10 rounded-2xl px-4 py-4 flex flex-col gap-4 text-sm font-medium shadow-xl shadow-black/20">
             {links.map((l) => (
               <Link
                 key={l.href}
