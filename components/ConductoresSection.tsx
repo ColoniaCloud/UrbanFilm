@@ -123,12 +123,12 @@ export default function ConductoresSection() {
           <p className="text-sm text-gray-500 leading-relaxed body-text">{CARDS[0].text}</p>
         </div>
 
-        {/* Cards 1-3 — three columns */}
-        <div className="grid grid-cols-3 gap-3">
+        {/* Cards 1-3 — stack on mobile, three columns from sm up */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {CARDS.slice(1).map((card, i) => (
             <div
               key={card.id}
-              className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm transition-all duration-700 ease-out flex flex-col"
+              className="bg-white border border-gray-100 p-5 sm:p-4 rounded-xl shadow-sm transition-all duration-700 ease-out flex flex-col"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(28px)',
@@ -138,8 +138,8 @@ export default function ConductoresSection() {
               <div className="w-8 h-8 rounded-md bg-black flex items-center justify-center mb-3 shrink-0">
                 <CardIcon paths={card.paths} />
               </div>
-              <h3 className="font-bold uppercase tracking-wide text-xs mb-1.5 heading leading-tight">{card.title}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed body-text line-clamp-3">{card.text}</p>
+              <h3 className="font-bold uppercase tracking-wide text-sm sm:text-xs mb-1.5 heading leading-tight">{card.title}</h3>
+              <p className="text-sm sm:text-xs text-gray-500 leading-relaxed body-text sm:line-clamp-3">{card.text}</p>
             </div>
           ))}
         </div>
