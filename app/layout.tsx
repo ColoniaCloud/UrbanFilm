@@ -2,17 +2,19 @@ import type { Metadata } from 'next'
 import { Jura, Inter } from 'next/font/google'
 import './globals.css'
 
+// Dos familias, cada una con los pesos que realmente se usan (antes Inter solo traía 400
+// y las negritas eran sintéticas; además Montserrat llegaba por un @import aparte).
 const jura = Jura({
   subsets: ['latin'],
-  weight: ['700'],
-  variable: '--font-title',
+  weight: ['500', '700'],
+  variable: '--font-jura',
   display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-sans',
+  weight: ['400', '500', '600'],
+  variable: '--font-inter',
   display: 'swap',
 })
 
@@ -66,14 +68,7 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="es"
-      className={`${jura.className} ${inter.className}`}
-      style={{
-        '--font-title': jura.style.fontFamily,
-        '--font-sans': inter.style.fontFamily,
-      } as React.CSSProperties}
-    >
+    <html lang="es" className={`${jura.variable} ${inter.variable}`}>
       <body className="antialiased min-h-screen flex flex-col">
         <script
           type="application/ld+json"

@@ -118,7 +118,7 @@ export default function ConductoresSection() {
 
         {/* Card 0 — full width */}
         <div
-          className="bg-white border border-gray-100 p-7 rounded-xl shadow-sm transition-all duration-700 ease-out"
+          className="surface-card p-7 transition-all duration-700 ease-out"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(28px)',
@@ -137,7 +137,7 @@ export default function ConductoresSection() {
           {CARDS.slice(1).map((card, i) => (
             <div
               key={card.id}
-              className="bg-white border border-gray-100 p-5 sm:p-4 rounded-xl shadow-sm transition-all duration-700 ease-out flex flex-col"
+              className="surface-card p-5 sm:p-4 transition-all duration-700 ease-out flex flex-col"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(28px)',

@@ -42,7 +42,7 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-white/10 p-8 rounded-xl hover:border-white/25 transition-colors">
+            <div className="surface-outline p-8">
               <span className="block text-5xl font-black text-white/10 mb-3 heading">01</span>
               <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Fácil de trabajar</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">
@@ -50,7 +50,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="border border-white/10 p-8 rounded-xl hover:border-white/25 transition-colors">
+            <div className="surface-outline p-8">
               <span className="block text-5xl font-black text-white/10 mb-3 heading">02</span>
               <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Precio directo de fábrica</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">
@@ -58,7 +58,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="border border-white/10 p-8 rounded-xl hover:border-white/25 transition-colors">
+            <div className="surface-outline p-8">
               <span className="block text-5xl font-black text-white/10 mb-3 heading">03</span>
               <h3 className="text-base font-bold uppercase tracking-wide mb-3 heading">Respaldo de marca USA</h3>
               <p className="text-sm text-gray-400 leading-relaxed body-text">

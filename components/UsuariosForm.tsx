@@ -45,7 +45,7 @@ export default function UsuariosForm() {
 
   if (done) {
     return (
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-10 text-center text-white">
+      <div className="surface-glass p-10 text-center text-white">
         <p className="text-4xl font-black heading mb-3">¡Gracias!</p>
         <p className="text-white/60 body-text text-sm">
           Te respondemos a la brevedad con las opciones disponibles cerca tuyo.
@@ -55,7 +55,7 @@ export default function UsuariosForm() {
   }
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-10 text-white">
+    <div className="surface-glass p-8 md:p-10 text-white">
       {/* Step indicator */}
       <div className="flex items-center mb-8">
         {STEPS.map((s, i) => (

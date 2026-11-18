@@ -14,7 +14,7 @@ export default function Hero() {
     <section className="relative min-h-[80vh]">
       {/* Decorative layer only: bleeds up behind the floating header (h-16 + top-4 = 5rem).
           El fondo oscuro y el overlay son estáticos: el video nunca se ve sin oscurecer. */}
-      <div className="absolute inset-x-0 -top-20 bottom-0 overflow-hidden bg-[#0e1216]">
+      <div className="absolute inset-x-0 -top-20 bottom-0 overflow-hidden bg-ink-900">
         <HeroVideo />
         <div className="absolute inset-0 bg-black/70" />
       </div>
@@ -27,7 +27,7 @@ export default function Hero() {
               <div className="max-w-xl text-center md:text-left">
                 <h1
                   className="rise-in text-3xl md:text-4xl font-black leading-snug text-white"
-                  style={{ fontFamily: "'Montserrat', sans-serif", ...step(1) }}
+                  style={step(1)}
                 >
                   {HEADLINE}
                 </h1>

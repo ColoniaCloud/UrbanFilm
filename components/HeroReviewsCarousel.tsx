@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'motion/react'
+import * as m from 'framer-motion/m'
 
 type Review = {
   text: string
@@ -125,7 +125,7 @@ export default function HeroReviewsCarousel() {
 
       {/* Desktop: slow continuous marquee of multiple cards */}
       <div className="hidden md:block overflow-hidden mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <motion.div
+        <m.div
           className="flex w-max gap-6"
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
@@ -133,7 +133,7 @@ export default function HeroReviewsCarousel() {
           {[...reviews, ...reviews].map((review, i) => (
             <ReviewCard key={i} review={review} className="w-95 shrink-0" />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </div>
   )

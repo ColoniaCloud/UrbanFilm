@@ -31,10 +31,7 @@ export default function UsuariosPage() {
           <p className="text-xs uppercase tracking-widest text-white/60 mb-4 body-text">
             Para conductores
           </p>
-          <h1
-            className="text-4xl md:text-5xl font-black leading-tight mb-6"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
+          <h1 className="text-4xl md:text-5xl font-black leading-tight mb-6">
             Comenzá a disfrutar de tu vehículo
           </h1>
           <p className="text-white/60 text-base leading-relaxed body-text">

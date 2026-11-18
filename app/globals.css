@@ -1,19 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Jura:wght@700&family=Montserrat:wght@700&display=swap');
 @import "tailwindcss";
+
+/* ===== Tokens =====
+   Paleta salida del logo: ink (fondos oscuros), brand (cian del logo), mist y paper.
+   `static` fuerza a Tailwind a emitir las variables aunque solo se usen desde CSS propio.
+   Quedan disponibles también como utilidades: bg-ink-900, text-brand-400, border-mist-500... */
+@theme static {
+  --color-ink-950: #07090b;
+  --color-ink-900: #0e1216;
+  --color-ink-800: #161c22;
+  --color-ink-700: #232a31;
+
+  --color-brand-100: #b9e3ed;
+  --color-brand-300: #7dd3e6;
+  --color-brand-400: #57c5de;
+  --color-brand-600: #268499;
+  --color-brand-700: #1d6b7e;
+
+  --color-mist-300: #a3aeb8;
+  --color-mist-500: #8a96a1;
+
+  --color-paper: #f4f6f7;
+  --color-paper-200: #e8ebed;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
-  --font-title: "Jura", sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --brand-cyan: #57c5de;
-  --brand-cyan-hover: #7dd3e6;
+  /* Dos familias, cargadas con next/font en app/layout.tsx (sin @import externo). */
+  --font-title: var(--font-jura), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
+  /* Movimiento: solo estas duraciones y estas curvas. */
   --motion-100: 100ms;
   --motion-150: 150ms;
+  --motion-200: 200ms;
   --motion-300: 300ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* Radios */
+  --radius-control: 7px;
+  --radius-card: 0.75rem;
+  --radius-panel: 1rem;
 }
 
 html {
@@ -48,10 +77,13 @@ textarea {
   font-family: var(--font-sans);
 }
 
+/* ===== Botones =====
+   Una sola base (.btn) y cuatro variantes. Solo se animan color, borde y transform
+   (antes `transition: all 0.25s`, con degradados que no se pueden animar). */
 button,
 input[type='submit'],
 .btn {
-  border-radius: 7px;
+  border-radius: var(--radius-control);
 }
 
 .btn {
@@ -63,27 +95,37 @@ input[type='submit'],
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  transition: all 0.25s ease;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-150) ease,
+    border-color var(--motion-150) ease,
+    transform var(--motion-100) ease;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Visible sobre fondos claros y oscuros (≥ 4.5:1 con ambos). */
+.btn:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #000000 0%, #2b2b2b 100%);
+  background: var(--color-ink-950);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, #111111 0%, #3e3e3e 100%);
-}
-
 .btn-secondary {
-  background: linear-gradient(135deg, #ffffff 0%, #f4f4f4 100%);
+  background: #ffffff;
   color: #0a0a0a;
   border: 1px solid rgba(55, 55, 55, 0.12);
-}
-
-.btn-secondary:hover {
-  background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
 }
 
 .btn-tertiary {
@@ -93,30 +135,77 @@ input[type='submit'],
   backdrop-filter: blur(14px);
 }
 
-.btn-tertiary:hover {
-  background: rgba(255, 255, 255, 0.18);
-}
-
 /* CTA principal: cian de marca (el del logo) con texto oscuro. Contraste 9.9:1,
    a diferencia del botón negro, que se perdía sobre el overlay oscuro del hero. */
 .btn-brand {
-  background: var(--brand-cyan);
-  color: #07090b;
+  background: var(--color-brand-400);
+  color: var(--color-ink-950);
   border: 1px solid transparent;
-  transition:
-    background-color var(--motion-150) ease,
-    transform var(--motion-100) ease;
 }
 
-.btn-brand:hover {
-  background: var(--brand-cyan-hover);
+/* Hover solo en dispositivos con puntero: en táctiles queda "pegado" tras el toque. */
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-ink-700);
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--color-paper-200);
+  }
+
+  .btn-tertiary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .btn-brand:hover:not(:disabled) {
+    background: var(--color-brand-300);
+  }
 }
 
-.btn-brand:active {
-  transform: scale(0.97);
+/* ===== Superficies =====
+   Cuatro, las que ya se repetían en el sitio. */
+
+/* Tarjeta clara sobre fondo claro */
+.surface-card {
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-/* Entradas con CSS puro: el contenido existe y es visible en el HTML del servidor.
+/* Tarjeta con solo borde, sobre fondo oscuro */
+.surface-outline {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: var(--radius-card);
+  transition: border-color var(--motion-150) ease;
+}
+
+@media (hover: hover) {
+  .surface-outline:hover {
+    border-color: rgb(255 255 255 / 0.25);
+  }
+}
+
+/* Panel de vidrio (formularios sobre foto oscura) */
+.surface-glass {
+  background: rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-panel);
+}
+
+/* Barra flotante oscura (navbar y su menú móvil) */
+.surface-float {
+  background: rgb(0 0 0 / 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: var(--radius-panel);
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.2),
+    0 8px 10px -6px rgb(0 0 0 / 0.2);
+}
+
+/* ===== Entradas =====
+   CSS puro: el contenido existe y es visible en el HTML del servidor.
    Antes dependían de motion (initial: opacity 0), así que el hero quedaba invisible
    hasta que cargaba e hidrataba el JS. Solo opacity + transform, 300 ms. */
 @keyframes rise-in {
@@ -152,7 +241,7 @@ input[type='submit'],
     animation: none;
   }
 
-  .btn-brand:active {
+  .btn:active:not(:disabled) {
     transform: none;
   }
 }
