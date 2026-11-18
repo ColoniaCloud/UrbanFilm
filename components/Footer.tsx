@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 text-center text-xs text-white/40 py-4">
+      <div className="border-t border-white/10 text-center text-xs text-white/60 py-4">
         {new Date().getFullYear()} Urban Film. Todos los derechos reservados.
       </div>
     </footer>

@@ -76,6 +76,9 @@ export default function HeroReviewsCarousel() {
   const timerRef = useRef<number | null>(null)
 
   useEffect(() => {
+    // Con movimiento reducido no hay avance automático de las reseñas.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     timerRef.current = window.setInterval(() => {
       setIndex((current) => (current + 1) % reviews.length)
     }, 5000)

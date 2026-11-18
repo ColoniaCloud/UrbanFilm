@@ -50,6 +50,8 @@ const CARDS = [
   },
 ]
 
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 function CardIcon({ paths }: { paths: string[] }) {
   return (
     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -83,7 +85,9 @@ export default function ConductoresSection() {
     return () => observer.disconnect()
   }, [])
 
+  // Con movimiento reducido no hay rotación: queda la primera foto y la primera palabra.
   useEffect(() => {
+    if (prefersReducedMotion()) return
     const t = setInterval(() => {
       setImgIndex((i) => (i + 1) % SLIDER_IMAGES.length)
     }, 3500)
@@ -91,14 +95,19 @@ export default function ConductoresSection() {
   }, [])
 
   useEffect(() => {
+    if (prefersReducedMotion()) return
+    let swap: ReturnType<typeof setTimeout> | undefined
     const t = setInterval(() => {
       setWordIn(false)
-      setTimeout(() => {
+      swap = setTimeout(() => {
         setWordIndex((i) => (i + 1) % WORDS.length)
         setWordIn(true)
       }, 350)
     }, 2800)
-    return () => clearInterval(t)
+    return () => {
+      clearInterval(t)
+      if (swap) clearTimeout(swap)
+    }
   }, [])
 
   return (
@@ -148,7 +157,7 @@ export default function ConductoresSection() {
 
       {/* Right: image slider + rotating word */}
       <div className="p-8 xl:p-12 h-full flex items-stretch">
-        <div className="relative overflow-hidden rounded-xl w-full min-h-[440px]">
+        <div className="relative overflow-hidden rounded-xl w-full min-h-[440px] [container-type:inline-size]">
 
           {SLIDER_IMAGES.map((src, i) => (
             <div
@@ -163,9 +172,12 @@ export default function ConductoresSection() {
           <div className="absolute inset-0 bg-black/65 z-10" />
 
           <div className="absolute inset-0 z-20 flex items-center justify-center px-8">
+            {/* Tamaño fluido según el ancho de la tarjeta (cqw): la palabra más larga
+                ("protección") siempre cabe; antes desbordaba en móvil con text-5xl fijo. */}
             <span
-              className="text-5xl md:text-6xl xl:text-7xl font-black uppercase tracking-widest text-white heading text-center transition-all duration-300 ease-out"
+              className="whitespace-nowrap font-black uppercase tracking-widest text-white heading text-center transition-all duration-300 ease-out"
               style={{
+                fontSize: 'clamp(1.5rem, 10.5cqw, 4.5rem)',
                 opacity: wordIn ? 1 : 0,
                 transform: wordIn ? 'scale(1) translateY(0px)' : 'scale(0.93) translateY(10px)',
               }}

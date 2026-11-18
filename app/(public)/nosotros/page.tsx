@@ -16,7 +16,7 @@ export default function NosotrosPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-20">
       <h1 className="text-5xl font-black uppercase tracking-widest mb-4">Nosotros</h1>
-      <p className="text-gray-400 text-lg mb-16 uppercase tracking-wider">Urban Film</p>
+      <p className="text-gray-500 text-lg mb-16 uppercase tracking-wider">Urban Film</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
         <div>

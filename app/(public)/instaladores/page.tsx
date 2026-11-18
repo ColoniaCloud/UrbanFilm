@@ -28,7 +28,7 @@ export default function InstaladorPage() {
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left */}
         <div className="text-white">
-          <p className="text-xs uppercase tracking-widest text-white/40 mb-4 body-text">
+          <p className="text-xs uppercase tracking-widest text-white/60 mb-4 body-text">
             Para instaladores
           </p>
           <h1

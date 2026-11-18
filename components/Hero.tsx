@@ -1,32 +1,22 @@
-'use client'
-
+import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'motion/react'
 import HeroReviewsCarousel from '@/components/HeroReviewsCarousel'
+import HeroVideo from '@/components/HeroVideo'
 
 const HEADLINE = 'Aumenta tu margen de ganancias instalando láminas de calidad.'
+
+/** Orden de entrada: --i multiplica los 60 ms de stagger definidos en globals.css. */
+const step = (i: number): CSSProperties => ({ ['--i' as string]: i })
 
 export default function Hero() {
   return (
     <section className="relative min-h-[80vh]">
-      {/* Decorative layer only: bleeds up behind the floating header (h-16 + top-4 = 5rem) */}
-      <div className="absolute inset-x-0 -top-20 bottom-0 overflow-hidden">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/video/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-
-        <motion.div
-          className="absolute inset-0 bg-black/70"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
+      {/* Decorative layer only: bleeds up behind the floating header (h-16 + top-4 = 5rem).
+          El fondo oscuro y el overlay son estáticos: el video nunca se ve sin oscurecer. */}
+      <div className="absolute inset-x-0 -top-20 bottom-0 overflow-hidden bg-[#0e1216]">
+        <HeroVideo />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* Content layer: stays within normal document flow, never behind the header */}
@@ -36,74 +26,48 @@ export default function Hero() {
             <div className="w-full md:w-[50%] flex items-center justify-center">
               <div className="max-w-xl text-center md:text-left">
                 <h1
-                  className="flex flex-wrap justify-center gap-x-2 text-3xl md:text-4xl font-black leading-snug text-white md:justify-start"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  className="rise-in text-3xl md:text-4xl font-black leading-snug text-white"
+                  style={{ fontFamily: "'Montserrat', sans-serif", ...step(1) }}
                 >
-                  {HEADLINE.split(' ').map((word, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.4 + i * 0.04, ease: 'easeOut' }}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
+                  {HEADLINE}
                 </h1>
-                <motion.p
-                  className="mt-6 text-base md:text-lg text-white/75 leading-relaxed body-text"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.75, ease: 'easeOut' }}
+                <p
+                  className="rise-in mt-6 text-base md:text-lg text-white/75 leading-relaxed body-text"
+                  style={step(2)}
                 >
                   Instala láminas con estándar americano, ofreciéndole a tus clientes un producto de buena calidad real y aumentá tu margen de ganancias.
-                </motion.p>
+                </p>
 
-                <motion.div
-                  className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-start"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.9, ease: 'easeOut' }}
+                <div
+                  className="rise-in mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-start"
+                  style={step(3)}
                 >
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
-                    <Link
-                      href="/contacto"
-                      className="btn btn-primary w-full sm:w-auto"
-                    >
-                      CONTACTO VENTAS
-                    </Link>
-                  </motion.div>
-                </motion.div>
+                  <Link href="/contacto" className="btn btn-brand w-full sm:w-auto">
+                    CONTACTO VENTAS
+                  </Link>
+                </div>
               </div>
             </div>
 
             <div className="w-full md:w-[45%] flex items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
-              >
+              <div className="rise-in" style={step(0)}>
                 <Image
                   src="/img/logo-f.png"
                   alt="Urban Film"
                   width={280}
                   height={112}
+                  priority
                   className="max-w-full h-auto"
                   style={{ width: 'auto', height: 'auto' }}
                 />
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
 
-        <motion.div
-          className="w-full px-4"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.65, ease: 'easeOut' }}
-        >
+        <div className="rise-in w-full px-4" style={step(4)}>
           <HeroReviewsCarousel />
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -31,7 +31,7 @@ export default function Home() {
           className="opacity-30"
         />
         <div className="relative z-10 max-w-6xl mx-auto">
-          <p className="text-xs uppercase tracking-widest text-gray-500 text-center mb-3">
+          <p className="text-xs uppercase tracking-widest text-gray-400 text-center mb-3">
             Para instaladores
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase tracking-widest heading">
@@ -104,7 +104,7 @@ export default function Home() {
       {/* Presencia regional */}
       <section className="bg-white border-y border-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <p className="text-xs uppercase tracking-widest text-gray-400 text-center mb-3">
+          <p className="text-xs uppercase tracking-widest text-gray-600 text-center mb-3">
             Cobertura regional
           </p>
           <h2 className="text-2xl font-bold text-center mb-10 uppercase tracking-widest heading">
@@ -128,7 +128,7 @@ export default function Home() {
                   />
                 </div>
                 <p className="font-bold text-base uppercase tracking-wide heading">{pais}</p>
-                <p className="text-sm text-gray-400 mt-1 body-text">{ciudad}</p>
+                <p className="text-sm text-gray-600 mt-1 body-text">{ciudad}</p>
               </div>
             ))}
           </div>

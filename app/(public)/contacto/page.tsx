@@ -99,7 +99,7 @@ export default function ContactoPage() {
                   />
                   <div>
                     <p className="font-bold text-xs uppercase tracking-wide heading">{pais}</p>
-                    <p className="text-xs text-gray-400 body-text">{ciudad}</p>
+                    <p className="text-xs text-gray-600 body-text">{ciudad}</p>
                   </div>
                 </div>
               ))}

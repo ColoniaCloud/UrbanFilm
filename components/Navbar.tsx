@@ -37,12 +37,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-4 z-50 h-16">
       <div className="relative max-w-6xl mx-auto px-4">
-        <motion.div
-          initial={{ y: -40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="bg-black/85 backdrop-blur-[8px] text-white rounded-2xl shadow-xl shadow-black/20 border border-white/10 flex items-center justify-between h-16 px-[26px]"
-        >
+        <div className="drop-in bg-black/85 backdrop-blur-[8px] text-white rounded-2xl shadow-xl shadow-black/20 border border-white/10 flex items-center justify-between h-16 px-[26px]">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/img/logo-h.png"
@@ -85,7 +80,7 @@ export default function Navbar() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
             />
           </button>
-        </motion.div>
+        </div>
 
         <AnimatePresence>
           {open && (

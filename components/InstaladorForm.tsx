@@ -79,7 +79,7 @@ export default function InstaladorForm() {
                   ? 'bg-white text-black'
                   : i === step
                   ? 'bg-white text-black ring-2 ring-white/30 ring-offset-2 ring-offset-transparent'
-                  : 'bg-white/15 text-white/40'
+                  : 'bg-white/15 text-white/60'
               }`}
             >
               {i < step ? '✓' : i + 1}
@@ -93,7 +93,7 @@ export default function InstaladorForm() {
             )}
           </div>
         ))}
-        <span className="ml-3 text-xs text-white/40 uppercase tracking-widest body-text">
+        <span className="ml-3 text-xs text-white/60 uppercase tracking-widest body-text">
           {STEPS[step].label}
         </span>
       </div>
