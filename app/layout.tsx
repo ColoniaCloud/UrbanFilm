@@ -1,19 +1,23 @@
 import type { Metadata } from 'next'
-import { Jura, Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-// Dos familias, cada una con los pesos que realmente se usan (antes Inter solo traía 400
-// y las negritas eran sintéticas; además Montserrat llegaba por un @import aparte).
-const jura = Jura({
-  subsets: ['latin'],
-  weight: ['500', '700'],
+// Dos familias alojadas en el proyecto (app/fonts, subconjunto latin, fuentes variables):
+// el build no depende de Google Fonts. Antes se descargaban en cada build y, cuando Google
+// devolvía una respuesta inesperada, el build del VPS fallaba. Un solo archivo por familia
+// cubre todos los pesos, así que las negritas dejan de ser sintéticas.
+const jura = localFont({
+  src: './fonts/jura-latin.woff2',
+  weight: '300 700',
+  style: 'normal',
   variable: '--font-jura',
   display: 'swap',
 })
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+const inter = localFont({
+  src: './fonts/inter-latin.woff2',
+  weight: '100 900',
+  style: 'normal',
   variable: '--font-inter',
   display: 'swap',
 })
