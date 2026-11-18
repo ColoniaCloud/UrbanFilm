@@ -1,6 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+const PAISES = [
+  { pais: 'Argentina', ciudad: 'Buenos Aires', svg: '/img/flag-argentina.svg' },
+  { pais: 'Brasil', ciudad: 'São Paulo', svg: '/img/flag-brasil.svg' },
+  { pais: 'Chile', ciudad: 'Santiago', svg: '/img/flag-chile.svg' },
+  { pais: 'Uruguay', ciudad: 'Montevideo', svg: '/img/flag-uruguay.svg' },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-black text-white mt-auto">
@@ -42,6 +49,26 @@ export default function Footer() {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 pb-10">
+        <p className="mb-4 text-xs uppercase tracking-widest text-white/60">Presentes en 4 países</p>
+        <ul className="flex flex-wrap gap-x-8 gap-y-3">
+          {PAISES.map(({ pais, ciudad, svg }) => (
+            <li key={pais} className="flex items-center gap-3">
+              <Image
+                src={svg}
+                alt={`Bandera de ${pais}`}
+                width={28}
+                height={20}
+                className="rounded-sm object-cover"
+              />
+              <span className="text-sm text-white/80">
+                {pais} <span className="text-white/60">· {ciudad}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="border-t border-white/10 text-center text-xs text-white/60 py-4">

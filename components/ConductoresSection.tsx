@@ -3,13 +3,14 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
+// Fotos de productos Urban (las anteriores, kaiser/karbon/keramx…, eran de Kristall, otra marca).
 const SLIDER_IMAGES = [
-  '/img/kaiser.jpg',
-  '/img/karbon.jpg',
-  '/img/keramx.jpg',
-  '/img/klar.jpg',
-  '/img/klass.jpg',
-  '/img/krypton.jpg',
+  '/img/productos/urban-carbono-05.jpg',
+  '/img/productos/sky-blue.jpg',
+  '/img/productos/pro-black-carbono-85.jpg',
+  '/img/productos/security-clear.jpg',
+  '/img/productos/urban-carbono-15.jpg',
+  '/img/productos/urban-carbono-50.jpg',
 ]
 
 const WORDS = ['confort', 'seguridad', 'privacidad', 'protección']

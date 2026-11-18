@@ -204,6 +204,94 @@ input[type='submit'],
     0 8px 10px -6px rgb(0 0 0 / 0.2);
 }
 
+/* ===== Demo de tinte, productos y reseñas ===== */
+.tint-film {
+  transition: opacity var(--motion-200) var(--ease-out);
+}
+
+.tint-step,
+.chip,
+.btn-icon {
+  cursor: pointer;
+  transition:
+    background-color var(--motion-150) ease,
+    border-color var(--motion-150) ease,
+    color var(--motion-150) ease;
+}
+
+/* Sobre superficies oscuras (ficha, reseñas) */
+.btn-icon:focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 2px;
+}
+
+.producto-card {
+  cursor: pointer;
+  transition:
+    box-shadow var(--motion-150) ease,
+    transform var(--motion-100) ease;
+}
+
+.producto-card:active {
+  transform: scale(0.985);
+}
+
+.producto-foto {
+  transition: transform var(--motion-300) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .producto-card:hover {
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  }
+
+  .producto-card:hover .producto-foto {
+    transform: scale(1.04);
+  }
+}
+
+/* Ficha de producto (<dialog> nativo: foco atrapado, Esc y restauración de foco incluidos) */
+@keyframes ficha-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.ficha[open] {
+  animation: ficha-in var(--motion-200) var(--ease-out);
+}
+
+.ficha[open]::backdrop {
+  animation: fade-in var(--motion-200) var(--ease-out);
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Cinta de reseñas: la pista lleva las tarjetas duplicadas y avanza media pista (sin salto). */
+@keyframes reviews-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews-track {
+  animation: reviews-scroll 60s linear infinite;
+}
+
+.reviews-viewport:hover .reviews-track,
+.reviews-track[data-paused='true'] {
+  animation-play-state: paused;
+}
+
 /* ===== Entradas =====
    CSS puro: el contenido existe y es visible en el HTML del servidor.
    Antes dependían de motion (initial: opacity 0), así que el hero quedaba invisible
@@ -241,7 +329,35 @@ input[type='submit'],
     animation: none;
   }
 
-  .btn:active:not(:disabled) {
+  .btn:active:not(:disabled),
+  .producto-card:active {
     transform: none;
+  }
+
+  .tint-film,
+  .tint-step,
+  .chip,
+  .btn-icon,
+  .producto-card,
+  .producto-foto {
+    transition: none;
+  }
+
+  .ficha[open],
+  .ficha[open]::backdrop {
+    animation: none;
+  }
+
+  /* Las reseñas pasan a una fila que se recorre con scroll; las copias se ocultan. */
+  .reviews-track {
+    animation: none;
+  }
+
+  .reviews-viewport {
+    overflow-x: auto;
+  }
+
+  .reviews-track > [aria-hidden='true'] {
+    display: none;
   }
 }
