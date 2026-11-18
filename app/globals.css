@@ -292,6 +292,17 @@ body:has(dialog[open]) {
   animation-play-state: paused;
 }
 
+/* ===== Revelado al hacer scroll =====
+   Mejora progresiva con animation-timeline: si el navegador no la soporta, el contenido
+   simplemente se ve. Solo opacity y transform, en la zona de entrada del elemento. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
 /* ===== Entradas =====
    CSS puro: el contenido existe y es visible en el HTML del servidor.
    Antes dependían de motion (initial: opacity 0), así que el hero quedaba invisible
@@ -325,7 +336,8 @@ body:has(dialog[open]) {
   }
 
   .rise-in,
-  .drop-in {
+  .drop-in,
+  .reveal {
     animation: none;
   }
 

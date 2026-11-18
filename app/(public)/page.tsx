@@ -58,7 +58,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {PILARES.map(({ titulo, texto }, i) => (
-              <div key={titulo} className="surface-outline p-8">
+              <div key={titulo} className="surface-outline reveal p-8">
                 <span className="heading mb-3 block text-5xl font-black text-white/10">0{i + 1}</span>
                 <h3 className="heading mb-3 text-base font-bold uppercase tracking-wide">{titulo}</h3>
                 <p className="body-text text-sm leading-relaxed text-mist-300">{texto}</p>
@@ -76,7 +76,7 @@ export default function Home() {
 
       {/* Para tu cliente */}
       <section className="py-24">
-        <div className="mx-auto mb-12 max-w-6xl px-4 text-center">
+        <div className="reveal mx-auto mb-12 max-w-6xl px-4 text-center">
           <p className="mb-3 text-xs uppercase tracking-widest text-gray-600">Para tu cliente</p>
           <h2 className="heading text-balance text-3xl font-bold uppercase tracking-widest md:text-4xl">
             Lo que tu cliente nota desde el primer día

@@ -1,5 +1,8 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import ContactoForm from '@/components/ContactoForm'
+import { SALES_EMAIL, phone, whatsappUrl } from '@/lib/contact'
+import { PRODUCTO_POR_SLUG } from '@/lib/productos-urban'
 
 const title = 'Contacto'
 const description = 'Contactá a Urban Film para consultas sobre nuestros productos.'
@@ -12,98 +15,80 @@ export const metadata: Metadata = {
   twitter: { title, description },
 }
 
-export default function ContactoPage() {
+const PAISES = [
+  { pais: 'Argentina', ciudad: 'Buenos Aires', svg: '/img/flag-argentina.svg' },
+  { pais: 'Brasil', ciudad: 'São Paulo', svg: '/img/flag-brasil.svg' },
+  { pais: 'Chile', ciudad: 'Santiago', svg: '/img/flag-chile.svg' },
+  { pais: 'Uruguay', ciudad: 'Montevideo', svg: '/img/flag-uruguay.svg' },
+]
+
+const enlaceCls = 'text-gray-700 underline-offset-4 transition-colors hover:text-ink-950 hover:underline'
+
+export default async function ContactoPage({ searchParams }: { searchParams: Promise<{ producto?: string }> }) {
+  // Si se llega desde la ficha de un producto, el mensaje arranca mencionándolo.
+  const { producto } = await searchParams
+  const consultado = producto ? PRODUCTO_POR_SLUG[producto] : undefined
+  const mensajeInicial = consultado ? `Hola, quiero consultar por ${consultado.nombre}.` : ''
+
+  const whatsapp = whatsappUrl(mensajeInicial || 'Hola, quiero hacer una consulta sobre Urban Film.')
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-5xl font-black uppercase tracking-widest mb-4">Contacto</h1>
-      <p className="text-gray-500 mb-16">
-        Completá el formulario y te respondemos a la brevedad.
-      </p>
+    <div className="mx-auto max-w-5xl px-4 py-20">
+      <p className="mb-3 text-xs uppercase tracking-widest text-gray-600">Contacto</p>
+      <h1 className="heading mb-4 text-4xl font-bold uppercase tracking-widest md:text-5xl">Hablemos</h1>
+      <p className="mb-14 max-w-xl text-gray-600">Completá el formulario y te respondemos a la brevedad.</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-        <form className="space-y-6">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.2fr_1fr]">
+        <ContactoForm mensajeInicial={mensajeInicial} />
+
+        <div className="space-y-10">
           <div>
-            <label className="block text-sm font-semibold uppercase tracking-wider mb-2">
-              Nombre
-            </label>
-            <input
-              type="text"
-              name="nombre"
-              required
-              className="w-full border border-gray-300 px-4 py-3 focus:outline-none focus:border-black transition-colors"
-              placeholder="Tu nombre"
-            />
+            <h2 className="heading mb-4 text-sm font-bold uppercase tracking-widest">Escribinos o llamanos</h2>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <span className="block text-xs uppercase tracking-widest text-gray-600">Email</span>
+                <a href={`mailto:${SALES_EMAIL}`} className={enlaceCls}>
+                  {SALES_EMAIL}
+                </a>
+              </li>
+              {whatsapp ? (
+                <li>
+                  <span className="block text-xs uppercase tracking-widest text-gray-600">WhatsApp</span>
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={enlaceCls}>
+                    Escribinos por WhatsApp
+                  </a>
+                </li>
+              ) : null}
+              {phone ? (
+                <li>
+                  <span className="block text-xs uppercase tracking-widest text-gray-600">Teléfono</span>
+                  <a href={phone.href} className={enlaceCls}>
+                    {phone.display}
+                  </a>
+                </li>
+              ) : null}
+            </ul>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold uppercase tracking-wider mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              required
-              className="w-full border border-gray-300 px-4 py-3 focus:outline-none focus:border-black transition-colors"
-              placeholder="tu@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold uppercase tracking-wider mb-2">
-              Mensaje
-            </label>
-            <textarea
-              name="mensaje"
-              rows={5}
-              required
-              className="w-full border border-gray-300 px-4 py-3 focus:outline-none focus:border-black transition-colors resize-none"
-              placeholder="¿En qué podemos ayudarte?"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-3 font-semibold uppercase tracking-widest text-sm hover:bg-gray-800 transition-colors"
-          >
-            Enviar mensaje
-          </button>
-        </form>
-
-        <div className="space-y-8">
-          <div>
-            <h3 className="font-bold uppercase tracking-widest mb-3 text-sm">Email</h3>
-            <a
-              href="mailto:ventas@urbanfilm.net"
-              className="text-gray-600 hover:text-black transition-colors"
-            >
-              ventas@urbanfilm.net
-            </a>
-          </div>
-
-          <div>
-            <h3 className="font-bold uppercase tracking-widest mb-4 text-sm">Dónde estamos</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { pais: 'Argentina', ciudad: 'Buenos Aires', svg: '/img/flag-argentina.svg' },
-                { pais: 'Brasil', ciudad: 'São Paulo', svg: '/img/flag-brasil.svg' },
-                { pais: 'Chile', ciudad: 'Santiago', svg: '/img/flag-chile.svg' },
-                { pais: 'Uruguay', ciudad: 'Montevideo', svg: '/img/flag-uruguay.svg' },
-              ].map(({ pais, ciudad, svg }) => (
-                <div key={pais} className="flex items-center gap-3 border border-gray-100 rounded-lg p-3">
+            <h2 className="heading mb-4 text-sm font-bold uppercase tracking-widest">Dónde estamos</h2>
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+              {PAISES.map(({ pais, ciudad, svg }) => (
+                <li key={pais} className="surface-card flex items-center gap-3 p-3">
                   <Image
                     src={svg}
                     alt={`Bandera de ${pais}`}
                     width={32}
                     height={22}
-                    className="rounded shadow-sm object-cover shrink-0"
+                    className="shrink-0 rounded-sm object-cover"
                   />
                   <div>
-                    <p className="font-bold text-xs uppercase tracking-wide heading">{pais}</p>
-                    <p className="text-xs text-gray-600 body-text">{ciudad}</p>
+                    <p className="heading text-xs font-bold uppercase tracking-wide">{pais}</p>
+                    <p className="body-text text-xs text-gray-600">{ciudad}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

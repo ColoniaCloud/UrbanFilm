@@ -1,14 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState, type CSSProperties } from 'react'
+import ProductoFoto from '@/components/ProductoFoto'
 import { whatsappUrl } from '@/lib/contact'
 import {
   FAMILIAS,
   FAMILIA_POR_ID,
   PRODUCTOS,
-  opacidadDeLamina,
   type FamiliaId,
   type ProductoUrban,
 } from '@/lib/productos-urban'
@@ -24,24 +23,6 @@ const FILTROS: { id: Filtro; nombre: string; total: number }[] = [
   })),
 ]
 
-/** Foto del producto o, si el CRM no tiene una propia, la escena del demo con la lámina a su tono. */
-function Foto({ producto, sizes }: { producto: ProductoUrban; sizes: string }) {
-  if (producto.imagen) {
-    return <Image src={producto.imagen} alt={`Muestra de ${producto.nombre}`} fill sizes={sizes} className="object-cover" />
-  }
-
-  return (
-    <>
-      <Image src="/img/tint-scene.jpg" alt="" fill sizes={sizes} className="object-cover" />
-      <div
-        className="absolute inset-0 bg-[#04070a]"
-        style={{ opacity: opacidadDeLamina(producto.vlt ?? 70) }}
-        aria-hidden="true"
-      />
-    </>
-  )
-}
-
 function Ficha({ producto, onClose }: { producto: ProductoUrban; onClose: () => void }) {
   const familia = FAMILIA_POR_ID[producto.familia]
   const whatsapp = whatsappUrl(`Hola, quiero consultar por ${producto.nombre} de Urban Film.`)
@@ -49,7 +30,7 @@ function Ficha({ producto, onClose }: { producto: ProductoUrban; onClose: () => 
   return (
     <div className="grid md:grid-cols-2">
       <div className="relative aspect-square md:aspect-auto md:min-h-[28rem]">
-        <Foto producto={producto} sizes="(min-width: 768px) 448px, 92vw" />
+        <ProductoFoto producto={producto} sizes="(min-width: 768px) 448px, 92vw" />
       </div>
 
       <div className="flex flex-col gap-5 p-6 md:p-8">
@@ -89,7 +70,7 @@ function Ficha({ producto, onClose }: { producto: ProductoUrban; onClose: () => 
         <p className="text-xs text-mist-300">Pedí la ficha técnica completa a ventas.</p>
 
         <div className="mt-auto flex flex-col gap-3 sm:flex-row">
-          <Link href="/contacto" className="btn btn-brand">
+          <Link href={`/contacto?producto=${producto.slug}`} className="btn btn-brand">
             Consultar
           </Link>
           {whatsapp ? (
@@ -98,6 +79,9 @@ function Ficha({ producto, onClose }: { producto: ProductoUrban; onClose: () => 
             </a>
           ) : null}
         </div>
+        <Link href={`/laminas/${producto.slug}`} className="text-sm font-medium text-brand-400 underline-offset-4 hover:underline">
+          Ver la página del producto →
+        </Link>
       </div>
     </div>
   )
@@ -163,7 +147,7 @@ export default function ProductosUrban() {
               >
                 <div className="relative aspect-square overflow-hidden bg-ink-900">
                   <div className="producto-foto absolute inset-0">
-                    <Foto producto={producto} sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 50vw" />
+                    <ProductoFoto producto={producto} sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 50vw" />
                   </div>
                   {producto.vlt != null ? (
                     <span className="absolute left-3 top-3 rounded-md bg-ink-950/80 px-2 py-1 text-xs font-semibold text-white">

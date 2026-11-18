@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { enviarFormulario } from '@/app/actions/contacto'
 
 const PAISES = ['Argentina', 'Brasil', 'Chile', 'Uruguay']
 
@@ -38,10 +39,28 @@ function canProceed(step: number, d: Data) {
 export default function UsuariosForm() {
   const [step, setStep] = useState(0)
   const [done, setDone] = useState(false)
+  const [enviando, setEnviando] = useState(false)
+  const [error, setError] = useState('')
+  // Campo trampa para bots (ver app/actions/contacto.ts): las personas no lo ven.
+  const [web, setWeb] = useState('')
   const [data, setData] = useState<Data>(initial)
 
   const set = (field: keyof Data, value: string | boolean) =>
     setData((d) => ({ ...d, [field]: value }))
+
+  const enviar = async () => {
+    setEnviando(true)
+    setError('')
+    try {
+      const resultado = await enviarFormulario('usuario', { nombre: data.nombre, telefono: data.telefono, direccion: data.direccion, pais: data.pais, email: data.email, condiciones: data.condiciones, web })
+      if (resultado.ok) setDone(true)
+      else setError(resultado.error)
+    } catch {
+      setError('No pudimos enviar el formulario. Probá de nuevo en unos minutos.')
+    } finally {
+      setEnviando(false)
+    }
+  }
 
   if (done) {
     return (
@@ -177,6 +196,23 @@ export default function UsuariosForm() {
         </div>
       </div>
 
+      <input
+        type="text"
+        name="web"
+        value={web}
+        onChange={(e) => setWeb(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
+      {error ? (
+        <p role="alert" className="mt-6 rounded-lg border border-red-300/40 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+          {error}
+        </p>
+      ) : null}
+
       {/* Navigation */}
       <div className="flex justify-between mt-8">
         {step > 0 ? (
@@ -200,11 +236,11 @@ export default function UsuariosForm() {
           </button>
         ) : (
           <button
-            onClick={() => setDone(true)}
-            disabled={!canProceed(step, data)}
+            onClick={enviar}
+            disabled={!canProceed(step, data) || enviando}
             className="btn btn-secondary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            Enviar
+            {enviando ? 'Enviando…' : 'Enviar'}
           </button>
         )}
       </div>
