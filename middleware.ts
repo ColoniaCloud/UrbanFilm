@@ -5,7 +5,7 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET!)
 
 const PROTECTED_PATHS = ['/dashboard', '/estadisticas', '/productos', '/blog-admin']
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isProtected = PROTECTED_PATHS.some((p) => pathname.startsWith(p))
 
